@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import ControlCenter from "./pages/ControlCenter";
+import { Layout } from "antd";
+import Sider from "antd/es/layout/Sider";
+import {
+  contentStyle,
+  headerStyle,
+  layoutStyle,
+  siderStyle,
+} from "./sepecifications";
+import Search from "antd/es/transfer/search";
 
 function App() {
+  const { Header, Content } = Layout;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Layout style={layoutStyle}>
+        <Sider width="25%" style={siderStyle}>
+          <ControlCenter />
+        </Sider>
+        <Layout>
+          <Header style={headerStyle}>
+            <Search
+              placeholder="input search text"
+              allowClear
+              style={{
+                width: 304,
+              }}
+            />
+          </Header>
+          <Content style={contentStyle}>Content</Content>
+        </Layout>
+      </Layout>
+    </>
   );
 }
 
